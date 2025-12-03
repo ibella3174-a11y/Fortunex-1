@@ -200,6 +200,9 @@
       transform: scale(1.03);
     }
 
+     .timer-box {       background: #1a0000;       border-radius: 12px;       padding: 18px;       margin-bottom: 20px;       text-align: center;       color: white;       box-shadow: 0 2px 5px rgba(0,0,0,0.2);     }     
+         .timer-title { font-size: 18px; font-weight: 700; color: #ffeb3b; }     .countdown { font-size: 40px; font-weight: 700; color: red; margin-top: 5px; }     .timer-note { font-size: 13px; margin-top: 5px; color: #e6e6e6; }
+        
   </style>
 </head>
 <body>
@@ -210,6 +213,8 @@
     To get your FortuneX Epin and activate your account, kindly make a transfer of exactly ₦7,500 or ₦14,500 to any of the accounts below.
   </div>
 
+  
+   <div class="timer-box">     <div class="timer-title">Secure Payment Portal<br>Complete payment within:</div>     <div id="countdown" class="countdown">10:00</div>     <div class="timer-note">Complete your transaction safely. Your account will be activated instantly after confirmation.</div>   </div>
   <div class="account-box">
     <div class="account-title">FORTUNEX ACCOUNT 1</div>
     <div class="bank">KUDA</div>
@@ -275,6 +280,26 @@
         element.style.color = "#444";
       }, 1500);
     }
+let timeLeft = 10 * 60; // seconds
+
+  function formatTime(sec) {
+    let m = Math.floor(sec / 60);
+    let s = sec % 60;
+    return `${m < 10 ? '0'+m : m}:${s < 10 ? '0'+s : s}`;
+  }
+
+  const countdownEl = document.getElementById("countdown");
+  countdownEl.textContent = formatTime(timeLeft);
+
+  const timer = setInterval(() => {
+    timeLeft--;
+    countdownEl.textContent = formatTime(timeLeft);
+    if (timeLeft <= 0) {
+      clearInterval(timer);
+      countdownEl.textContent = "00:00";
+    }
+  }, 1000);
+    
   </script>
 
 </body>
